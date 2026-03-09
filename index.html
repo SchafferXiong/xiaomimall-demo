@@ -362,7 +362,8 @@
 
             <!-- Inline 16:9 Video Canvas -->
             <div class="video-wrapper gsap-scale" id="vidContainer">
-                <video class="hero-video" src="./assets/xiaomishangcheng.mp4" autoplay loop muted playsinline></video>
+                <video id="heroVideo" class="hero-video" src="./assets/xiaomishangcheng.mp4" autoplay loop muted
+                    playsinline webkit-playsinline x5-video-player-type="h5"></video>
             </div>
 
             <!-- Hook Content -->
@@ -417,6 +418,13 @@
     <script>
         // High quality Staggered Entrance
         window.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('heroVideo');
+            if (video) {
+                video.play().catch(e => console.log("Autoplay prevented"));
+                // Force play on click anywhere as fallback
+                document.body.addEventListener('click', () => { video.play(); }, { once: true });
+            }
+
             const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
             tl.to("#headerRef", { y: 0, opacity: 1, duration: 0.8 }, 0.1)
