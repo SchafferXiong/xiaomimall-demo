@@ -68,7 +68,34 @@
             box-sizing: border-box;
             z-index: 20;
             /* Subtler shadow for flat UI */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .scrollable-content {
+            flex: 1;
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin-top: 122px;
+            /* Height of header ~122px */
+            margin-bottom: 99px;
+            /* Height of footer ~99px */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Hide scrollbar for cleaner look */
+        .scrollable-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollable-content {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
         }
 
         .brand-cluster {
@@ -199,7 +226,6 @@
 
         /* 5. App Store Meta Stats (New Content) */
         .bottom-fill {
-            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -254,6 +280,46 @@
             width: 1px;
             height: 20px;
             background: #F0F0F0;
+        }
+
+        /* 5b. Extended Content Sections */
+        .extra-section {
+            width: 90%;
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px auto;
+            box-sizing: border-box;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+            text-align: left;
+        }
+
+        .extra-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--mi-dark-text);
+            margin: 0 0 10px 0;
+        }
+
+        .extra-text {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .mock-image {
+            width: 100%;
+            height: 150px;
+            background: #f0f0f0;
+            border-radius: 12px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+            font-weight: 500;
         }
 
         /* 6. Service Guarantees (New Content) */
@@ -360,46 +426,67 @@
                 <div class="get-btn">获取</div>
             </header>
 
-            <!-- Inline 16:9 Video Canvas -->
-            <div class="video-wrapper gsap-scale" id="vidContainer">
-                <video id="heroVideo" class="hero-video" src="./assets/xiaomishangcheng.mp4" autoplay loop muted
-                    playsinline webkit-playsinline x5-video-player-type="h5"></video>
-            </div>
-
-            <!-- Hook Content -->
-            <main class="content-body">
-                <h1 class="hook-title gsap-up" id="t1" style="font-size: 26px;">来买 REDMI Turbo5</h1>
-                <p class="sub-hook gsap-up" id="t2">开启抢票模式，抢啥都快！<br />立刻下载，体验超越旗舰的满血性能。</p>
-                <div class="features">
-                    <div class="tag gsap-up" id="tag1">🚀 抢票模式</div>
-                    <div class="tag gsap-up" id="tag2">⚡ 抢啥都快</div>
-                </div>
-            </main>
-
-            <!-- Filled Bottom Info Section -->
-            <div class="bottom-fill">
-                <div class="app-meta gsap-up" id="metaRef">
-                    <div class="meta-item">
-                        <span class="meta-value">4.9 <span class="star">★</span></span>
-                        <span class="meta-label">124万个评分</span>
-                    </div>
-                    <div class="meta-divider"></div>
-                    <div class="meta-item">
-                        <span class="meta-value">25亿+</span>
-                        <span class="meta-label">次下载</span>
-                    </div>
-                    <div class="meta-divider"></div>
-                    <div class="meta-item">
-                        <span class="meta-value">135 MB</span>
-                        <span class="meta-label">年龄 4+</span>
-                    </div>
+            <!-- Content wrapper for scrolling -->
+            <div class="scrollable-content">
+                <!-- Inline 16:9 Video Canvas -->
+                <div class="video-wrapper gsap-scale" id="vidContainer">
+                    <video id="heroVideo" class="hero-video" src="./assets/xiaomishangcheng.mp4" autoplay loop muted
+                        playsinline webkit-playsinline x5-video-player-type="h5"></video>
                 </div>
 
-                <div class="service-guarantees gsap-up" id="guaranteeRef">
-                    <div class="guarantee-item"><span>✔</span> 官方正品</div>
-                    <div class="guarantee-item"><span>✔</span> 全国联保</div>
-                    <div class="guarantee-item"><span>✔</span> 7天退货</div>
+                <!-- Hook Content -->
+                <main class="content-body">
+                    <h1 class="hook-title gsap-up" id="t1" style="font-size: 26px;">来买 REDMI Turbo5</h1>
+                    <p class="sub-hook gsap-up" id="t2">开启抢票模式，抢啥都快！<br />立刻下载，体验超越旗舰的满血性能。</p>
+                    <div class="features">
+                        <div class="tag gsap-up" id="tag1">🚀 抢票模式</div>
+                        <div class="tag gsap-up" id="tag2">⚡ 抢啥都快</div>
+                    </div>
+                </main>
+
+                <!-- Filled Bottom Info Section -->
+                <div class="bottom-fill">
+                    <div class="app-meta gsap-up" id="metaRef">
+                        <div class="meta-item">
+                            <span class="meta-value">4.9 <span class="star">★</span></span>
+                            <span class="meta-label">124万个评分</span>
+                        </div>
+                        <div class="meta-divider"></div>
+                        <div class="meta-item">
+                            <span class="meta-value">25亿+</span>
+                            <span class="meta-label">次下载</span>
+                        </div>
+                        <div class="meta-divider"></div>
+                        <div class="meta-item">
+                            <span class="meta-value">135 MB</span>
+                            <span class="meta-label">年龄 4+</span>
+                        </div>
+                    </div>
+
+                    <div class="service-guarantees gsap-up" id="guaranteeRef">
+                        <div class="guarantee-item"><span>✔</span> 官方正品</div>
+                        <div class="guarantee-item"><span>✔</span> 全国联保</div>
+                        <div class="guarantee-item"><span>✔</span> 7天退货</div>
+                    </div>
                 </div>
+
+                <!-- Extra Scrolling Content 1 -->
+                <div class="extra-section gsap-up">
+                    <h3 class="extra-title">为什么选择小米商城？</h3>
+                    <p class="extra-text">
+                        在小米商城，我们提供最新鲜的科技资讯、最全面的产品评测以及最专治的数据对比如下。您可以在这里第一时间购买到所有小米及生态链明星产品，享受官方直接发货带来的品质保障。</p>
+                    <div class="mock-image">品质生活，触手可及</div>
+                </div>
+
+                <!-- Extra Scrolling Content 2 -->
+                <div class="extra-section gsap-up">
+                    <h3 class="extra-title">专属会员权益</h3>
+                    <p class="extra-text">成为小米商城会员，享受多重特权：月度运费券、新品优购资格、专属会员日折上折，更有1对1专属客服团队随时为您解答疑问。</p>
+                    <div class="mock-image">会员尊享多重福利</div>
+                </div>
+
+                <!-- Spacer for scrolling comfort -->
+                <div style="height: 20px;"></div>
             </div>
 
             <!-- Sticky Bottom CTA -->
